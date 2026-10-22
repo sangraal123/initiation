@@ -4,25 +4,27 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.23.4 <23 || >=24.22.1 <25"
   },
   "scripts": {
     "dev": "next dev",
     "dev:demo": "node scripts/demo/build-gateway.mjs && HENKAKU_DEMO_ONLY=1 next dev",
     "build": "next build",
-    "build:demo": "node scripts/demo/build-gateway.mjs && HENKAKU_DEMO_ONLY=1 next build",
+    "build:demo": "npm run check:node && node scripts/demo/build-gateway.mjs && HENKAKU_DEMO_ONLY=1 next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "preinstall": "node scripts/check-node-security.cjs",
+    "check:node": "node scripts/check-node-security.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
     "@tanstack/react-query": "^5.102.8",
     "iron-session": "^9.0.1",
-    "next": "16.3.4",
+    "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "siwe": "^3.0.0",
@@ -39,7 +41,7 @@
     "@vitest/coverage-v8": "^5.0.0",
     "dotenv": "^17.4.2",
     "eslint": "^10",
-    "eslint-config-next": "16.3.4",
+    "eslint-config-next": "16.3.8",
     "tailwindcss": "^4.3.3",
     "tone": "^15.1.22",
     "tsx": "^4.23.13",
