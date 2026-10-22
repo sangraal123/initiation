@@ -23,7 +23,7 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          node-version: "22"
+          node-version: "22.23.4"
 
       # 本番の配信物に入る依存だけを見て、high以上で落とす。
       # devを含めると vitepress 経由の esbuild(No fix available、開発サーバー向けの
@@ -39,7 +39,7 @@ jobs:
       fail-fast: false
       matrix:
         # package.jsonのengines.nodeとREADMEが動作環境として挙げる下限
-        node: ["22"]
+        node: ["22.23.4"]
     steps:
       - uses: actions/checkout@v7
 
@@ -68,7 +68,7 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          node-version: "24"
+          node-version: "24.22.1"
           cache: npm
 
       - run: npm ci
